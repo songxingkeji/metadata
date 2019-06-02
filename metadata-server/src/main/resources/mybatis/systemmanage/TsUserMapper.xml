@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunsheen.metadataserver.systemmanage.usermanage.mapper.TsUserMapper">
+    <sql id="tsUserColumns">
+        a.ts_user_id AS "tsUserId",
+        a.account AS "account",
+        a.password AS "password"
+    </sql>
+
+    <!-- 通过登录用户名查询用户 -->
+    <select id="getTsUserByUserId" resultType="com.sunsheen.metadataserver.systemmanage.usermanage.pojo.TsUserDO">
+        SELECT
+        <include refid="tsUserColumns"/>
+        FROM
+            ts_user a
+        <where>
+            account = #{userId}
+        </where>
+    </select>
+
+    <!-- 通过登录用户名和密码查询用户 -->
+    <select id="getTsUserByUserIdAndPwd" resultType="com.sunsheen.metadataserver.systemmanage.usermanage.pojo.TsUserDO">
+        SELECT
+            <include refid="tsUserColumns"/>
+        FROM
+            ts_user a
+        <where>
+            account = #{userId}
+        </where>
+        AND password = #{pwd}
+    </select>
+</mapper>

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+// 引入外部的proto对象
+import "grpcCommon.proto";
+
+option java_multiple_files = true;
+option java_package = "com.sunsheen.metadatacom.grpc.service.handle";
+option java_outer_classname = "HandleProto";
+
+package handle;
+
+service HandleService {
+    // 按资料编码检索总控处理表接口
+    rpc getHandleByDatumCode (grpccommon.DatumCodeRequest) returns (grpccommon.ResponseData){}
+}

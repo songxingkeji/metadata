@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+// 引入外部的proto对象
+import "grpcCommon.proto";
+
+option java_multiple_files = true;
+option java_package = "com.sunsheen.metadatacom.grpc.service.datumtypehyp";
+option java_outer_classname = "DatumtypehypProto";
+
+package datumtypehyp;
+
+service DatumtypehypService {
+    // 检索所有的血缘关系信息接口
+    rpc getDatumtypehyp (grpccommon.UserPwdRequest) returns (grpccommon.ResponseData){}
+}

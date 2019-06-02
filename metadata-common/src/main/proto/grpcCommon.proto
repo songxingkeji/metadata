@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+// 引入外部的proto对象
+import "google/protobuf/any.proto";
+
+option java_multiple_files = true;
+option java_package = "com.sunsheen.metadatacom.grpc.service.grpccommon";
+option java_outer_classname = "GrpcCommonProto";
+
+package grpccommon;
+
+// 1.请求的消息类型
+// 请求参数，用户信息校验条件
+message UserPwdRequest {
+    string userId = 1; // 用户ID
+    string pwd = 2; // 密码
+    string interfaceId = 3; // 接口url
+}
+
+// 请求参数，用户信息校验条件和资料编码条件
+message DatumCodeRequest {
+    grpccommon.UserPwdRequest userPwdRequest = 1;
+    string datumCode = 2;
+}
+
+// 2.响应的消息类型
+// 返回数据库数据
+message TableMap {
+    map<string, google.protobuf.Any> mapAny = 1;
+}
+
+// 响应类别，数据库数据
+message DbData {
+    repeated TableMap tableMap = 1;
+}
+
+// 返回状态及返回数据
+message ResponseData {
+    int32 returnCode = 1; // 返回状态
+    DbData dbData = 2; // 返回数据
+}
+
+// string类型字段
+message StringResponse {
+    string stringValue = 1;
+}
+
+// int类型字段
+message IntResponse {
+    int32 intValue = 1;
+}
+
+// long类型字段
+message LongResponse {
+    int64 longValue = 1;
+}

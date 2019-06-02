@@ -1,0 +1,22 @@
+KafkaTemplate发送消息及结果回调
+1.发送接口
+ListenableFuture<SendResult<K, V>> sendDefault(V data);
+ListenableFuture<SendResult<K, V>> sendDefault(K key, V data);
+ListenableFuture<SendResult<K, V>> sendDefault(Integer partition, K key, V data);
+ListenableFuture<SendResult<K, V>> sendDefault(Integer partition, Long timestamp, K key, V data);
+ListenableFuture<SendResult<K, V>> send(String topic, V data);
+ListenableFuture<SendResult<K, V>> send(String topic, K key, V data);
+ListenableFuture<SendResult<K, V>> send(String topic, Integer partition, K key, V data);
+ListenableFuture<SendResult<K, V>> send(String topic, Integer partition, Long timestamp, K key, V data);
+ListenableFuture<SendResult<K, V>> send(ProducerRecord<K, V> record);
+ListenableFuture<SendResult<K, V>> send(Message<?> message);
+    topic：这里填写的是Topic的名字
+    partition：这里填写的是分区的id，其实也是就第几个分区，id从0开始。表示指定发送到该分区中
+    timestamp：时间戳，一般默认当前时间戳
+    key：消息的键
+    data：消息的数据
+    ProducerRecord：消息对应的封装类，包含上述字段
+    Message<?>：Spring自带的Message封装类，包含消息及消息头
+    方法中有个Long类型的时间戳(timestamp)参数，这是Kafka0.10版本提供的新功能，主要用来使用时间索引进行查询数据以及日志切分清除策略。
+        还有一个ProducerRecord参数，这个类其实就是整合了topic、partition、data等数据的消费实体类。
+

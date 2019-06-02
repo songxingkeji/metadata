@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+// 引入外部的proto对象
+import "grpcCommon.proto";
+
+option java_multiple_files = true;
+option java_package = "com.sunsheen.metadatacom.grpc.service.element";
+option java_outer_classname = "ElementProto";
+
+package element;
+
+service ElementService {
+    // 气象数据元数据获取接口
+    rpc getElement (grpccommon.UserPwdRequest) returns (grpccommon.ResponseData){}
+}

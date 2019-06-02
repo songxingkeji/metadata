@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+// 引入外部的proto对象
+import "grpcCommon.proto";
+
+option java_multiple_files = true;
+option java_package = "com.sunsheen.metadatacom.grpc.service.datumtypeelm";
+option java_outer_classname = "DatumtypeelmProto";
+
+package datumtypeelm;
+
+service DatumtypeelmService {
+    // 获取全部的资料编码与数据元关系数据接口
+    rpc getDatumtypeelm (grpccommon.UserPwdRequest) returns (grpccommon.ResponseData){}
+    // 获取指定资料编码与数据元的关系数据接口
+    rpc getElementsInfoByDatumCode (grpccommon.DatumCodeRequest) returns (grpccommon.ResponseData){}
+}
